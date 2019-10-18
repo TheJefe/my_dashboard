@@ -42,7 +42,7 @@ SCHEDULER.every '5m', :first_in => 0 do |job|
       }
     end
     puts "**************#{events.count}***************"
-    send_event("google_calendar_#{cal_name}", {events: events})
+    send_event("google_calendar_#{cal_name}", {events: events, cal_name: cal_name})
   end
 
 end
