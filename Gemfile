@@ -4,3 +4,4 @@ gem 'smashing'
 
 gem 'icalendar'
 gem 'google-api-client', '0.8'
+gem 'octokit'

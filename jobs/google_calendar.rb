@@ -20,7 +20,7 @@ SCHEDULER.every '5m', :first_in => 0 do |job|
     # events = events.first(100)
 
     # select only current and upcoming events
-    now = Time.now.utc
+    now = DateTime.now.utc
 
     events = events.select  { |event| event.dtend.class == Icalendar::Values::DateTime  }
     events = events.select  { |event| event.dtstart.class == Icalendar::Values::DateTime  }
