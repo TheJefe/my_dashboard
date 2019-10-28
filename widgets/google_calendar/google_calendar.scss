@@ -41,4 +41,9 @@ $moreinfo-color:    rgba(255, 255, 255, 0.7);
     padding-left: 30px;
   }
 
+  @keyframes pulse {
+    0% {
+      background-color: white;
+    }
+}
 }
