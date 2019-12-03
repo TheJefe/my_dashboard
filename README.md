@@ -21,3 +21,12 @@ Runs at: [http://localhost:3030](http://localhost:3030)
     work,my_work_email
     personal,my_personal_email
     ```
+
+# Github Integration Setup
+
+Create `github.config` with the following
+
+```
+token,my_github_api_token
+query,is:open is:pr author:TheJefe user:my_org
+```
