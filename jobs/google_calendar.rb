@@ -49,7 +49,7 @@ def init
   return service
 end
 
-SCHEDULER.every '5m', :first_in => 0 do |job|
+SCHEDULER.every '1m', :first_in => 0 do |job|
   service = init()
   calendars.each do |cal_name, calendar_id|
     response = service.list_events(
@@ -67,7 +67,6 @@ SCHEDULER.every '5m', :first_in => 0 do |job|
         end: event.end.date || event.end.date_time.to_s
       }
     end
-    puts "=====#{cal_name}======"
     send_event("google_calendar_#{cal_name}", {events: events, cal_name: cal_name})
   end
 end
