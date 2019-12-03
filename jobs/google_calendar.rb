@@ -57,7 +57,8 @@ SCHEDULER.every '5m', :first_in => 0 do |job|
       max_results:   max_events,
       single_events: true,
       order_by:      "startTime",
-      time_min:      DateTime.now.rfc3339
+      time_min:      DateTime.now.rfc3339,
+      time_max: (Date.today + 1).rfc3339 # Limit to todays events
     )
     events = response.items.each.map do |event|
       {
