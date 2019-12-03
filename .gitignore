@@ -2,3 +2,8 @@
 history.yml
 calendars.config
 github.config
+
+# google calendar ignores
+gcal.config
+credentials.json
+token.yaml
