@@ -2,6 +2,8 @@
 history.yml
 calendars.config
 github.config
+env.yml
+log
 
 # google calendar ignores
 gcal.config

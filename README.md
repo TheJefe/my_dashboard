@@ -30,3 +30,14 @@ Create `github.config` with the following
 token,my_github_api_token
 query,is:open is:pr author:TheJefe user:my_org
 ```
+
+# Weather Widget Setup
+Get API key from https://openweathermap.org/
+Drop it in `env.yml`
+
+Example:
+```yaml
+openweathermap:
+  api_key: 1234abc
+  city_id: 12345
+```
