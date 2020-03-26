@@ -1,5 +1,7 @@
 Check out http://smashing.github.io/smashing for more information.
 
+![image](https://user-images.githubusercontent.com/2390653/77599432-03457c00-6edb-11ea-8d79-de14d94d2ca9.png)
+
 # Start
 
 `smashing start`
