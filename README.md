@@ -23,6 +23,8 @@ Runs at: [http://localhost:3030](http://localhost:3030)
     work,my_work_email
     personal,my_personal_email
     ```
+5. Updated `credentials.json` to match `gcal.config`. Example `credentials_work.json` and `credentials_personal.json`
+6. When first run, you'll need to follow a URL output in the logs, and paste the token that you get back into the terminal
 
 # Github Integration Setup
 

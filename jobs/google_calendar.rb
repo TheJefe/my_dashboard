@@ -10,11 +10,6 @@ max_events = 3
 
 OOB_URI = "urn:ietf:wg:oauth:2.0:oob".freeze
 APPLICATION_NAME = "Dashing Personal Calendar".freeze
-CREDENTIALS_PATH = "credentials.json".freeze
-# The file token.yaml stores the user's access and refresh tokens, and is
-# created automatically when the authorization flow completes for the first
-# time.
-TOKEN_PATH = "token.yaml".freeze
 SCOPE = Google::Apis::CalendarV3::AUTH_CALENDAR_READONLY
 
 ##
@@ -23,9 +18,12 @@ SCOPE = Google::Apis::CalendarV3::AUTH_CALENDAR_READONLY
 # the user's default browser will be launched to approve the request.
 #
 # @return [Google::Auth::UserRefreshCredentials] OAuth2 credentials
-def authorize
-  client_id = Google::Auth::ClientId.from_file CREDENTIALS_PATH
-  token_store = Google::Auth::Stores::FileTokenStore.new file: TOKEN_PATH
+def authorize(cal_name)
+  client_id = Google::Auth::ClientId.from_file "credentials_#{cal_name}.json"
+  # The file token.yaml stores the user's access and refresh tokens, and is
+  # created automatically when the authorization flow completes for the first
+  # time.
+  token_store = Google::Auth::Stores::FileTokenStore.new file: "token_#{cal_name}.yaml"
   authorizer = Google::Auth::UserAuthorizer.new client_id, SCOPE, token_store
   user_id = "default"
   credentials = authorizer.get_credentials user_id
@@ -41,17 +39,18 @@ def authorize
   credentials
 end
 
-def init
+def init(cal_name)
   # Initialize the API
   service = Google::Apis::CalendarV3::CalendarService.new
   service.client_options.application_name = APPLICATION_NAME
-  service.authorization = authorize
+  service.authorization = authorize(cal_name)
   return service
 end
 
 SCHEDULER.every '1m', :first_in => 0 do |job|
-  service = init()
+  puts "Getting calendars"
   calendars.each do |cal_name, calendar_id|
+    service = init(cal_name)
     response = service.list_events(
       calendar_id,
       max_results:   max_events,

@@ -8,5 +8,5 @@ tmp
 
 # google calendar ignores
 gcal.config
-credentials.json
-token.yaml
+credentials*.json
+token*.yaml
